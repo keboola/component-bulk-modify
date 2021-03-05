@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  tests: &tests
+    image: keboola/component-bulk-modify
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./build/logs/:/code/build/logs/
+    environment:
+      test_admin_token:
+      test_api_url:
+      test_app:
+    command: ['composer', 'ci']
+
+  tests-local:
+    <<: *tests
+    volumes:
+      - .:/code

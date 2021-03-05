@@ -1,0 +1,9 @@
+parameters:
+    ignoreErrors:
+    checkMissingIterableValueType: false
+    level: max
+    paths:
+        - src
+        - tests
+    excludes_analyse:
+        - src/Kernel.php

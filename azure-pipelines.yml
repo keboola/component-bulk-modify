@@ -1,0 +1,39 @@
+pr: none
+trigger:
+  batch: true
+  branches:
+    include:
+      - '*'
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  DOCKER_BUILDKIT: 1
+
+stages:
+  - stage: tests
+    dependsOn: prepare
+    displayName: Build & Test
+    jobs:
+      - job: test
+        displayName: 'Test'
+        steps:
+          - script: |
+              set -Eeuo pipefail
+
+              echo "Public API URL: $public_queue_api_url"
+
+              docker-compose build --pull
+              docker-compose run --rm tests
+            displayName: 'Build & Run Tests'
+            env:
+              test_storage_api_token: $(test_storage_api_token)
+              public_queue_api_url: http://$(QUEUE_PUBLIC_API_IP):94
+
+          - task: PublishTestResults@2
+            displayName: 'Publish Test results'
+            inputs:
+              testResultsFormat: 'JUnit'
+              testResultsFiles: 'build/logs/*.xml'
+
