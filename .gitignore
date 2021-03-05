@@ -1,0 +1,8 @@
+vendor/
+build/logs
+.env
+.php_cs.cache
+/phpunit.xml
+.phpunit.result.cache
+/var/cache/dev
+/set-env.sh

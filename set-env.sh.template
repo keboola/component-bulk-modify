@@ -1,0 +1,5 @@
+#!/bin/bash
+
+export test_admin_token=
+export test_api_url=https://apps-api.keboola.com
+export test_app=keboola-test.app-acme-anvil-service
