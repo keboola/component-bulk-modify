@@ -18,7 +18,8 @@ RUN pecl channel-update pecl.php.net \
     && yes | pecl install xdebug-2.9.8 \
     && docker-php-ext-enable xdebug
 
-COPY composer.* ./
+COPY composer.* symfony.lock ./
 RUN composer install $COMPOSER_FLAGS --no-scripts --no-autoloader
+
 COPY . .
 RUN composer install $COMPOSER_FLAGS
