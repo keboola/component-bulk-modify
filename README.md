@@ -50,3 +50,7 @@ or use the `set-env.sh.teplate` to create a `set-env.sh` file.
     docker-compose run tests-local composer install
     source ./set-env.sh && docker-compose run tests-local
     ```
+
+## License
+
+MIT licensed, see [LICENSE](./LICENSE) file.
